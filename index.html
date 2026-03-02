@@ -6,40 +6,40 @@
   <meta name="theme-color" content="#ffffff" />
   <title>Menu</title>
   <style>
-    :root{ --bg:#fff; --fg:#111; --muted:#666; --shadow: 0 10px 30px rgba(0,0,0,.12); }
-    *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
-    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
-    .wrap{ min-height:100vh; display:flex; flex-direction:column; }
-    header{ padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; position:sticky; top:0; background:rgba(255,255,255,.92); backdrop-filter:saturate(160%) blur(10px); border-bottom:1px solid #eee; z-index:5; }
-    header .title{ font-weight:600; font-size:14px; color:var(--fg); }
-    header .meta{ font-size:12px; color:var(--muted); }
-    .viewer{ flex:1; display:flex; align-items:center; justify-content:center; padding:12px; }
-    .frame{ width:min(980px, 100%); height:calc(100vh - 120px); max-height:920px; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:#f7f7f7; position:relative; touch-action: pan-y; }
-    .slides{ height:100%; display:flex; transition:transform 240ms ease; }
-    .slide{ min-width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff; }
-    .slide img{ width:100%; height:100%; object-fit:contain; user-select:none; -webkit-user-drag:none; }
+    :root{{ --bg:#fff; --fg:#111; --muted:#666; --shadow: 0 10px 30px rgba(0,0,0,.12); }}
+    *{{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }}
+    body{{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }}
+    .wrap{{ min-height:100vh; display:flex; flex-direction:column; }}
 
-    .nav{ position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
-    .btn{ pointer-events:auto; width:44px; height:44px; border-radius:999px; border:1px solid rgba(0,0,0,.08); background:rgba(255,255,255,.88); display:grid; place-items:center; margin:0 10px; box-shadow:0 6px 18px rgba(0,0,0,.10); }
-    .btn:active{ transform:scale(.98); }
-    .btn svg{ width:20px; height:20px; }
+    header{{ padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; position:sticky; top:0; background:rgba(255,255,255,.92); backdrop-filter:saturate(160%) blur(10px); border-bottom:1px solid #eee; z-index:5; flex-wrap:wrap; }}
+    header .title{{ font-weight:700; font-size:14px; color:var(--fg); }}
+    header .meta{{ font-size:12px; color:var(--muted); }}
+    .actions{{ display:flex; gap:10px; align-items:center; justify-content:flex-end; }}
+    .topcta{{ text-decoration:none; font-weight:700; font-size:12px; padding:8px 12px; border-radius:999px; border:1px solid rgba(0,0,0,.10); background:rgba(255,255,255,.92); box-shadow:0 6px 18px rgba(0,0,0,.08); white-space:nowrap; }}
+    .topcta:active{{ transform:scale(.99); }}
 
-    .dots{ position:absolute; left:0; right:0; bottom:10px; display:flex; gap:8px; align-items:center; justify-content:center; }
-    .dot{ width:8px; height:8px; border-radius:99px; background:rgba(0,0,0,.20); }
-    .dot.active{ background:rgba(0,0,0,.65); width:18px; }
+    .viewer{{ flex:1; display:flex; align-items:center; justify-content:center; padding:12px; }}
+    .frame{{ width:min(980px, 100%); height:calc(100vh - 120px); max-height:920px; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:#f7f7f7; position:relative; touch-action: pan-y; }}
+    .slides{{ height:100%; display:flex; transition:transform 240ms ease; }}
+    .slide{{ min-width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff; }}
+    .slide img{{ width:100%; height:100%; object-fit:contain; user-select:none; -webkit-user-drag:none; }}
 
-    footer{ padding:10px 14px 18px; display:flex; align-items:center; justify-content:center; gap:10px; color:var(--muted); font-size:12px; }
+    .nav{{ position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }}
+    .btn{{ pointer-events:auto; width:44px; height:44px; border-radius:999px; border:1px solid rgba(0,0,0,.08); background:rgba(255,255,255,.88); display:grid; place-items:center; margin:0 10px; box-shadow:0 6px 18px rgba(0,0,0,.10); }}
+    .btn:active{{ transform:scale(.98); }}
+    .btn svg{{ width:20px; height:20px; }}
 
-    @media (max-width:520px){
-      .frame{ height:calc(100vh - 112px); border-radius:14px; }
-      header .title{ font-size:13px; }
-    }
-  
-    footer{ padding:12px 14px 10px; display:flex; align-items:center; justify-content:center; gap:12px; }
-    .cta{ text-decoration:none; font-weight:600; font-size:13px; padding:10px 14px; border-radius:999px; border:1px solid rgba(0,0,0,.10); background:rgba(255,255,255,.92); box-shadow:0 6px 18px rgba(0,0,0,.10); }
-    .cta:active{ transform:scale(.99); }
-    .brand{ padding:0 14px 16px; text-align:center; color:var(--muted); font-size:12px; }
+    .dots{{ position:absolute; left:0; right:0; bottom:10px; display:flex; gap:8px; align-items:center; justify-content:center; }}
+    .dot{{ width:8px; height:8px; border-radius:99px; background:rgba(0,0,0,.20); }}
+    .dot.active{{ background:rgba(0,0,0,.65); width:18px; }}
 
+    footer{{ padding:10px 14px 18px; display:flex; align-items:center; justify-content:center; gap:10px; color:var(--muted); font-size:12px; }}
+
+    @media (max-width:520px){{
+      .frame{{ height:calc(100vh - 138px); border-radius:14px; }}
+      header .title{{ font-size:13px; }}
+      .actions{{ width:100%; justify-content:center; }}
+    }}
   </style>
 </head>
 <body>
@@ -49,7 +49,10 @@
       <div class="title">Menu</div>
       <div class="meta"><span id="counter">1 / 2</span> • Swipe left/right</div>
     </div>
-    <div class="meta">Tap arrows if you prefer</div>
+    <div class="actions">
+      <a class="topcta" href="https://wa.me/919962832566?text=Hi%20I%27d%20like%20to%20place%20an%20order%20from%20the%20menu" target="_blank" rel="noopener" aria-label="WhatsApp your order">💬 WhatsApp your order</a>
+      <a class="topcta" href="https://instagram.com/lost.in.the.dessert" target="_blank" rel="noopener" aria-label="Instagram">📷 Instagram</a>
+    </div>
   </header>
 
   <main class="viewer">
@@ -73,10 +76,8 @@
   </main>
 
   <footer>
-    <a class="cta" href="tel:+919962832566" aria-label="Call now">📞 Call Now</a>
-    <a class="cta" href="https://instagram.com/lost.in.the.dessert" target="_blank" rel="noopener" aria-label="Instagram">📷 Instagram</a>
+    <span>Tip: You can pinch-zoom on most phones.</span>
   </footer>
-  <div class="brand">@lost.in.the.dessert</div>
 </div>
 
 <script>
@@ -104,9 +105,7 @@
     index = Math.max(0, Math.min(total-1, i));
     slides.style.transform = 'translateX(' + (-index*100) + '%)';
     counter.textContent = (index+1) + ' / ' + total;
-    for (var j=0;j<dots.length;j++){
-      dots[j].classList.toggle('active', j===index);
-    }
+    for (var j=0;j<dots.length;j++) dots[j].classList.toggle('active', j===index);
   }
 
   prev.addEventListener('click', function(){ go(index-1); });
@@ -118,7 +117,7 @@
     var t = e.touches[0];
     startX = t.clientX; startY = t.clientY;
     dx = 0; dragging = true;
-  }, {passive:true});
+  }, {{passive:true}});
 
   frame.addEventListener('touchmove', function(e){
     if (!dragging || !e.touches || e.touches.length!==1) return;
@@ -126,7 +125,7 @@
     dx = t.clientX - startX;
     var dy = t.clientY - startY;
     if (Math.abs(dy) > Math.abs(dx)) return;
-  }, {passive:true});
+  }, {{passive:true}});
 
   frame.addEventListener('touchend', function(){
     if (!dragging) return;
