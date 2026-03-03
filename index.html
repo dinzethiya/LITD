@@ -4,145 +4,52 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#ffffff" />
-  <title>Menu</title>
+  <title>Lost in the Dessert — Menu</title>
   <style>
-    :root{ --bg:#fff; --fg:#111; --muted:#666; --shadow: 0 10px 30px rgba(0,0,0,.12); }
-    *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
-    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
-    .wrap{ min-height:100vh; display:flex; flex-direction:column; }
-    header{ padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; position:sticky; top:0; background:rgba(255,255,255,.92); backdrop-filter:saturate(160%) blur(10px); border-bottom:1px solid #eee; z-index:5; }
-    header .title{ font-weight:600; font-size:14px; color:var(--fg); }
-    header .meta{ font-size:12px; color:var(--muted); }
-    .viewer{ flex:1; display:flex; align-items:center; justify-content:center; padding:12px; }
-    .frame{ width:min(980px, 100%); height:calc(100vh - 120px); max-height:920px; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:#f7f7f7; position:relative; touch-action: pan-y; }
-    .slides{ height:100%; display:flex; transition:transform 240ms ease; }
-    .slide{ min-width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#fff; }
-    .slide img{ width:100%; height:100%; object-fit:contain; user-select:none; -webkit-user-drag:none; }
-
-    .nav{ position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
-    .btn{ pointer-events:auto; width:44px; height:44px; border-radius:999px; border:1px solid rgba(0,0,0,.08); background:rgba(255,255,255,.88); display:grid; place-items:center; margin:0 10px; box-shadow:0 6px 18px rgba(0,0,0,.10); }
-    .btn:active{ transform:scale(.98); }
-    .btn svg{ width:20px; height:20px; }
-
-    .dots{ position:absolute; left:0; right:0; bottom:10px; display:flex; gap:8px; align-items:center; justify-content:center; }
-    .dot{ width:8px; height:8px; border-radius:99px; background:rgba(0,0,0,.20); }
-    .dot.active{ background:rgba(0,0,0,.65); width:18px; }
-
-    footer{ padding:10px 14px 18px; display:flex; align-items:center; justify-content:center; gap:10px; color:var(--muted); font-size:12px; }
-
-    @media (max-width:520px){
-      .frame{ height:calc(100vh - 112px); border-radius:14px; }
-      header .title{ font-size:13px; }
-    }
-  
-    footer{ padding:12px 14px 10px; display:flex; align-items:center; justify-content:center; gap:12px; }
-    .cta{ text-decoration:none; font-weight:600; font-size:13px; padding:10px 14px; border-radius:999px; border:1px solid rgba(0,0,0,.10); background:rgba(255,255,255,.92); box-shadow:0 6px 18px rgba(0,0,0,.10); }
-    .cta:active{ transform:scale(.99); }
-    .brand{ padding:0 14px 16px; text-align:center; color:var(--muted); font-size:12px; }
-
+    :root{--bg:#fff;--fg:#111;--muted:#6b6b6b;--border:rgba(0,0,0,.08);--shadow:0 12px 34px rgba(0,0,0,.14);--shadow-soft:0 8px 20px rgba(0,0,0,.10)}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg)}
+    .wrap{min-height:100vh;display:flex;flex-direction:column}
+    .viewer{flex:1;display:flex;align-items:center;justify-content:center;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));position:relative}
+    .frame{width:min(980px,100%);height:calc(100vh - 24px);max-height:940px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);background:#f7f7f7;position:relative;touch-action:pan-y}
+    .slides{height:100%;display:flex;transition:transform 240ms ease}
+    .slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#fff}
+    .slide img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+    .nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;pointer-events:none;z-index:2}
+    .btn{pointer-events:auto;width:44px;height:44px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.9);display:grid;place-items:center;margin:0 10px;box-shadow:var(--shadow-soft);backdrop-filter:blur(8px)}
+    .btn svg{width:20px;height:20px}
+    .dots{position:absolute;left:0;right:0;bottom:max(12px,env(safe-area-inset-bottom));display:flex;gap:8px;align-items:center;justify-content:center;z-index:3}
+    .dot{width:8px;height:8px;border-radius:99px;background:rgba(0,0,0,.22)}
+    .dot.active{background:rgba(0,0,0,.65);width:18px}
+    .topbar{position:absolute;top:max(12px,env(safe-area-inset-top));left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:4;pointer-events:none}
+    .counter-pill,.cta{pointer-events:auto;display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.92);box-shadow:var(--shadow-soft);backdrop-filter:blur(8px);font-size:12px;font-weight:700;white-space:nowrap}
+    .actions{display:flex;gap:10px}
   </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div>
-      <div class="title">Menu</div>
-      <div class="meta"><span id="counter">1 / 2</span> • Swipe left/right</div>
+<div class="wrap"><div class="viewer"><div class="frame" id="frame">
+  <div class="topbar">
+    <div class="counter-pill"><span id="counter">1 / 5</span><span style="color:var(--muted)">• Swipe</span></div>
+    <div class="actions">
+      <a class="cta" href="https://wa.me/919962832566?text=Hi%2C%20I%27d%20like%20to%20place%20an%20order%20from%20the%20menu." target="_blank">💬 DM to order</a>
+      <a class="cta" href="https://instagram.com/lost.in.the.dessert" target="_blank">📷 Instagram</a>
     </div>
-    <div class="meta">Tap arrows if you prefer</div>
-  </header>
-
-  <main class="viewer">
-    <div class="frame" id="frame" aria-label="Interactive menu">
-      <div class="slides" id="slides">
-        <div class="slide"><img src="menu-1.jpg" alt="Menu page 1" loading="eager"></div>
-        <div class="slide"><img src="menu-2.jpg" alt="Menu page 2" loading="lazy"></div>
-      </div>
-
-      <div class="nav">
-        <button class="btn" id="prev" aria-label="Previous page" title="Previous">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="btn" id="next" aria-label="Next page" title="Next">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
-
-      <div class="dots" id="dots" aria-label="Page indicator"></div>
-    </div>
-  </main>
-
-  <footer>
-    <a class="cta" href="tel:+919962832566" aria-label="Call now">📞 Call Now</a>
-    <a class="cta" href="https://instagram.com/lost.in.the.dessert" target="_blank" rel="noopener" aria-label="Instagram">📷 Instagram</a>
-  </footer>
-  <div class="brand">@lost.in.the.dessert</div>
-</div>
-
+  </div>
+  <div class="slides" id="slides">
+    <div class="slide"><img src="menu-1.jpg"></div>
+    <div class="slide"><img src="menu-2.jpg"></div>
+    <div class="slide"><img src="menu-3.jpg"></div>
+    <div class="slide"><img src="menu-4.jpg"></div>
+    <div class="slide"><img src="menu-5.jpg"></div>
+  </div>
+  <div class="nav">
+    <button class="btn" id="prev">‹</button>
+    <button class="btn" id="next">›</button>
+  </div>
+  <div class="dots" id="dots"></div>
+</div></div></div>
 <script>
-(function(){
-  var slides = document.getElementById('slides');
-  var frame  = document.getElementById('frame');
-  var prev   = document.getElementById('prev');
-  var next   = document.getElementById('next');
-  var counter= document.getElementById('counter');
-  var dotsEl = document.getElementById('dots');
-
-  var total = slides.children.length;
-  var index = 0;
-
-  var dots = [];
-  for (var i=0;i<total;i++){
-    var d = document.createElement('div');
-    d.className = 'dot' + (i===0 ? ' active' : '');
-    (function(ii){ d.addEventListener('click', function(){ go(ii); }); })(i);
-    dotsEl.appendChild(d);
-    dots.push(d);
-  }
-
-  function go(i){
-    index = Math.max(0, Math.min(total-1, i));
-    slides.style.transform = 'translateX(' + (-index*100) + '%)';
-    counter.textContent = (index+1) + ' / ' + total;
-    for (var j=0;j<dots.length;j++){
-      dots[j].classList.toggle('active', j===index);
-    }
-  }
-
-  prev.addEventListener('click', function(){ go(index-1); });
-  next.addEventListener('click', function(){ go(index+1); });
-
-  var startX=0, startY=0, dx=0, dragging=false;
-  frame.addEventListener('touchstart', function(e){
-    if (!e.touches || e.touches.length!==1) return;
-    var t = e.touches[0];
-    startX = t.clientX; startY = t.clientY;
-    dx = 0; dragging = true;
-  }, {passive:true});
-
-  frame.addEventListener('touchmove', function(e){
-    if (!dragging || !e.touches || e.touches.length!==1) return;
-    var t = e.touches[0];
-    dx = t.clientX - startX;
-    var dy = t.clientY - startY;
-    if (Math.abs(dy) > Math.abs(dx)) return;
-  }, {passive:true});
-
-  frame.addEventListener('touchend', function(){
-    if (!dragging) return;
-    dragging=false;
-    var threshold = 50;
-    if (dx < -threshold) go(index+1);
-    else if (dx > threshold) go(index-1);
-  });
-
-  window.addEventListener('keydown', function(e){
-    if (e.key === 'ArrowRight') go(index+1);
-    if (e.key === 'ArrowLeft') go(index-1);
-  });
-
-  go(0);
-})();
+(function(){var s=document.getElementById('slides'),f=document.getElementById('frame'),p=document.getElementById('prev'),n=document.getElementById('next'),c=document.getElementById('counter'),dE=document.getElementById('dots');var t=s.children.length,i=0,d=[];for(var x=0;x<t;x++){var o=document.createElement('div');o.className='dot'+(x===0?' active':'');(function(ii){o.onclick=function(){g(ii)}})(x);dE.appendChild(o);d.push(o)}function g(j){i=Math.max(0,Math.min(t-1,j));s.style.transform='translateX('+(-i*100)+'%)';c.textContent=(i+1)+' / '+t;d.forEach((e,k)=>e.classList.toggle('active',k===i))}p.onclick=()=>g(i-1);n.onclick=()=>g(i+1);g(0)})();
 </script>
 </body>
 </html>
